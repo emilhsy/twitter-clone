@@ -8,8 +8,8 @@ import { BiLogOut } from "react-icons/bi";
 
 const Sidebar = () => {
 	const data = {
-		fullName: "John Doe",
-		username: "johndoe",
+		fullName: "Joe Goldberg",
+		username: "joegoldberg",
 		profileImg: "/avatars/boy1.png",
 	};
 
