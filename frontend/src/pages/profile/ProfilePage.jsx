@@ -30,7 +30,15 @@ const ProfilePage = () => {
 
 	const queryClient = useQueryClient();
 
-	const { data:authUser } = useQuery({ queryKey: ["authUser"] });
+	const { data: authUser } = useQuery({
+		queryKey: ["authUser"],
+		queryFn: async () => {
+			const res = await fetch("/api/auth/me"); // ✅ Replace with your actual auth endpoint if different
+			const data = await res.json();
+			if (!res.ok) throw new Error(data.error || "Failed to fetch authenticated user");
+			return data;
+		}
+	});
 
 	const { data:user, isLoading, refetch, isRefetching } = useQuery({
 		queryKey: ["userProfile"],
@@ -46,7 +54,7 @@ const ProfilePage = () => {
 		}
 	});
 
-	const { mutate:updateProfile, isPending:isUpdatingProfile } = useMutation({
+	const { mutateAsync:updateProfile, isPending:isUpdatingProfile } = useMutation({
 		mutationFn: async () => {
 			try {
 				const res = await fetch("/api/users/update", {
@@ -73,6 +81,8 @@ const ProfilePage = () => {
 				queryClient.invalidateQueries({ queryKey: ["authUser"] }),
 				queryClient.invalidateQueries({ queryKey: ["userProfile"] })
 			]);
+			setProfileImg(null);
+			setCoverImg(null);
 		},
 		onError: (error) => {
 			toast.error(error.message);
@@ -186,7 +196,7 @@ const ProfilePage = () => {
 								{(coverImg || profileImg) && (
 									<button
 										className='btn btn-primary rounded-full btn-sm text-white px-4 ml-2'
-										onClick={() => updateProfile()}
+										onClick={ async () => await updateProfile() }
 									>
 										{ isUpdatingProfile ? "Updating..." : "Update" }
 									</button>
