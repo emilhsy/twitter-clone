@@ -1,7 +1,4 @@
-Twitter Clone – Full Stack MERN Application
-A full-featured Twitter clone built with the MERN stack and modern tools. This project mimics core Twitter functionalities with a clean UI and real-time interactivity.
-
-*Tech Stack
+* Tech Stack
 Frontend: React.js, Tailwind CSS, React Query
 
 Backend: Node.js, Express
@@ -12,7 +9,7 @@ Auth: JSON Web Tokens (JWT)
 
 Media: Cloudinary for image uploads
 
-Features
+* Features
 User Authentication (JWT)
 
 Follow Suggestions
