@@ -1,4 +1,5 @@
 * Tech Stack
+
 Frontend: React.js, Tailwind CSS, React Query
 
 Backend: Node.js, Express
@@ -9,7 +10,9 @@ Auth: JSON Web Tokens (JWT)
 
 Media: Cloudinary for image uploads
 
+
 * Features
+
 User Authentication (JWT)
 
 Follow Suggestions
